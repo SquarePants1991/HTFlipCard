@@ -20,8 +20,25 @@
                     <view key="view" contentMode="scaleToFill" id="TpU-gO-2f1">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JvM-U7-qa7" customClass="HTFlipCardView">
+                                <rect key="frame" x="87" y="233.5" width="200" height="200"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="R5x-Ee-WJc"/>
+                                    <constraint firstAttribute="height" constant="200" id="TrN-U5-gFa"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="JvM-U7-qa7" firstAttribute="centerX" secondItem="TpU-gO-2f1" secondAttribute="centerX" id="pmm-E3-XA7"/>
+                            <constraint firstItem="JvM-U7-qa7" firstAttribute="centerY" secondItem="TpU-gO-2f1" secondAttribute="centerY" id="rsf-j7-twv"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="flipCard" destination="JvM-U7-qa7" id="zrB-CC-kOh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tc2-Qw-aMS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -1,0 +1,22 @@
+PODS:
+  - Expecta (1.0.6)
+  - HTFlipCard (0.1.0)
+  - Specta (1.0.7)
+
+DEPENDENCIES:
+  - Expecta
+  - HTFlipCard (from `../`)
+  - Specta
+
+EXTERNAL SOURCES:
+  HTFlipCard:
+    :path: ../
+
+SPEC CHECKSUMS:
+  Expecta: 3b6bd90a64b9a1dcb0b70aa0e10a7f8f631667d5
+  HTFlipCard: 3415d3eef0e38175a95e6c4109ab7edaca495eb0
+  Specta: 3e1bd89c3517421982dc4d1c992503e48bd5fe66
+
+PODFILE CHECKSUM: bb7b9d65f6addb7fde5804378c197e82037f674e
+
+COCOAPODS: 1.3.1

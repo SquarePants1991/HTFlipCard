@@ -7,8 +7,10 @@
 //
 
 #import "HTViewController.h"
+@import HTFlipCard;
 
 @interface HTViewController ()
+@property (weak, nonatomic) IBOutlet HTFlipCardView *flipCard;
 
 @end
 
@@ -17,13 +19,21 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    UIView *greenView = [UIView new];
+    greenView.backgroundColor = UIColor.greenColor;
+    greenView.layer.cornerRadius = 5;
+    [greenView setClipsToBounds:YES];
+    
+    UIView *redView = [UIView new];
+    redView.backgroundColor = UIColor.redColor;
+    redView.layer.cornerRadius = 5;
+    [redView setClipsToBounds:YES];
+    
+    [self.flipCard setFrontView:redView backView:greenView];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [self.flipCard flip:HTFlipDirectionHorizontal];
 }
 
 @end
