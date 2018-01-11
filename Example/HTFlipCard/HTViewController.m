@@ -19,12 +19,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    UIView *greenView = [UIView new];
+    UILabel *greenView = [UILabel new];
     greenView.backgroundColor = UIColor.greenColor;
     greenView.layer.cornerRadius = 5;
     [greenView setClipsToBounds:YES];
     
-    UIView *redView = [UIView new];
+    UILabel *redView = [UILabel new];
     redView.backgroundColor = UIColor.redColor;
     redView.layer.cornerRadius = 5;
     [redView setClipsToBounds:YES];
@@ -33,7 +33,12 @@
 }
 
 - (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    [self.flipCard flip:HTFlipDirectionHorizontal];
+    [self.flipCard flip:HTFlipDirectionHorizontal completed:^(UIView *frontView, UIView *backView) {
+        UILabel *backLabel = (UILabel *)backView;
+        backLabel.text = @"Back";
+        UILabel *frontLabel = (UILabel *)frontView;
+        frontLabel.text = @"Front";
+    }];
 }
 
 @end

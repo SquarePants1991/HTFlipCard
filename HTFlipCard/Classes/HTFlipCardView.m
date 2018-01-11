@@ -13,6 +13,7 @@
     UIView *_frontView;
     UIView *_backView;
     BOOL _isFlipped;
+    HTFlipCardCompleteHandler _flipCompletedHandler;
 }
 @end
 
@@ -39,6 +40,13 @@
 }
 
 - (void)flip:(HTFlipDirection)direction {
+    [self flip:direction completed:nil];
+}
+
+- (void)flip:(HTFlipDirection)direction completed:(HTFlipCardCompleteHandler)completed {
+    
+    _flipCompletedHandler = completed;
+    
     [(HTFlipCardLayer *)self.layer setFlipDirection:direction];
     CABasicAnimation *flipAnimation = [CABasicAnimation animationWithKeyPath:@"flipRotation"];
     flipAnimation.fromValue = _isFlipped ? @(M_PI) : @0;
@@ -53,5 +61,11 @@
 
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag {
     _isFlipped = !_isFlipped;
+    if (_flipCompletedHandler != nil) {
+        UIView *frontView = _isFlipped ? _backView : _frontView;
+        UIView *backView = _isFlipped ? _frontView : _backView;
+        _flipCompletedHandler(frontView, backView);
+        _flipCompletedHandler = nil;
+    }
 }
 @end
