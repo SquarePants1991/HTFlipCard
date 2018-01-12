@@ -7,12 +7,14 @@
 
 #import <UIKit/UIKit.h>
 #import "HTFlipCardLayer.h"
-
-typedef void(^HTFlipCardCompleteHandler)(UIView *frontView, UIView *backView);
+#import "HTFlipAction.h"
 
 @interface HTFlipCardView : UIView
+@property (strong, nonatomic, readonly) UIView * frontView;
+@property (strong, nonatomic, readonly) UIView * backView;
+
 - (instancetype)initWithFrontView:(UIView *)frontView backView:(UIView *)backView;
 - (void)setFrontView:(UIView *)frontView backView:(UIView *)backView;
 - (void)flip:(HTFlipDirection)direction;
-- (void)flip:(HTFlipDirection)direction completed:(HTFlipCardCompleteHandler)completed;
+- (void)flip:(HTFlipDirection)direction beforeFlip:(HTFlipActionWillFlipHandler)willFlip completed:(HTFlipActionDidFlipCompleteHandler)completed;
 @end

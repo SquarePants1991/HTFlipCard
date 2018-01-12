@@ -46,12 +46,9 @@
 
 - (void)syncFlipRotation:(CGFloat)flipRotation {
     int flipAxis[3] = {0, 1, 0};
-    switch(self.flipDirection) {
-        case HTFlipDirectionVertical:
-            flipAxis[0] = 1;
-            flipAxis[1] = 0;
-        default:
-            break;
+    if(self.flipDirection & HTFlipDirectionVertical) {
+        flipAxis[0] = 1;
+        flipAxis[1] = 0;
     }
     CATransform3D transform = CATransform3DIdentity;
     transform.m34 = 1.0 / -400.0;

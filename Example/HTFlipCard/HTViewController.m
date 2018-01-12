@@ -8,8 +8,14 @@
 
 #import "HTViewController.h"
 @import HTFlipCard;
+#import <HTFlipCard/HTFlipCardLayer.h>
+#import <HTFlipCard/HTFlipCardView.h>
 
-@interface HTViewController ()
+#define SF(format, ...)  [NSString stringWithFormat:format, __VA_ARGS__]
+
+@interface HTViewController () {
+    int _score;
+}
 @property (weak, nonatomic) IBOutlet HTFlipCardView *flipCard;
 
 @end
@@ -19,25 +25,38 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    UILabel *greenView = [UILabel new];
-    greenView.backgroundColor = UIColor.greenColor;
-    greenView.layer.cornerRadius = 5;
-    [greenView setClipsToBounds:YES];
+    _score = 0;
+
+    UILabel *backView = [UILabel new];
+    backView.backgroundColor = UIColor.greenColor;
+    backView.layer.cornerRadius = 5;
+    [backView setClipsToBounds:YES];
+    backView.text = SF(@"%d", _score + 1);
     
-    UILabel *redView = [UILabel new];
-    redView.backgroundColor = UIColor.redColor;
-    redView.layer.cornerRadius = 5;
-    [redView setClipsToBounds:YES];
-    
-    [self.flipCard setFrontView:redView backView:greenView];
+    UILabel *frontView = [UILabel new];
+    frontView.backgroundColor = UIColor.redColor;
+    frontView.layer.cornerRadius = 5;
+    [frontView setClipsToBounds:YES];
+    frontView.text = SF(@"%d", _score);
+
+    [self setupLabel: frontView];
+    [self setupLabel: backView];
+
+    [self.flipCard setFrontView:frontView backView:backView];
+}
+
+- (void)setupLabel:(UILabel *)label {
+    label.textAlignment = NSTextAlignmentCenter;
+    label.font = [UIFont systemFontOfSize:140];
+    label.textColor = UIColor.whiteColor;
 }
 
 - (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    [self.flipCard flip:HTFlipDirectionHorizontal completed:^(UIView *frontView, UIView *backView) {
-        UILabel *backLabel = (UILabel *)backView;
-        backLabel.text = @"Back";
-        UILabel *frontLabel = (UILabel *)frontView;
-        frontLabel.text = @"Front";
+    _score++;
+    [self.flipCard flip:HTFlipDirectionVertical beforeFlip:^(UIView *frontView, UIView *backView) {
+        ((UILabel *)backView).text = SF(@"%d", _score);
+    } completed:^(UIView *frontView, UIView *backView) {
+
     }];
 }
 
