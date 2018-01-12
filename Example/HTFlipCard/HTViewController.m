@@ -28,13 +28,13 @@
     _score = 0;
 
     UILabel *backView = [UILabel new];
-    backView.backgroundColor = UIColor.greenColor;
+    backView.backgroundColor = UIColor.clearColor;
     backView.layer.cornerRadius = 5;
     [backView setClipsToBounds:YES];
     backView.text = SF(@"%d", _score + 1);
     
     UILabel *frontView = [UILabel new];
-    frontView.backgroundColor = UIColor.redColor;
+    frontView.backgroundColor = UIColor.clearColor;
     frontView.layer.cornerRadius = 5;
     [frontView setClipsToBounds:YES];
     frontView.text = SF(@"%d", _score);
@@ -48,7 +48,7 @@
 - (void)setupLabel:(UILabel *)label {
     label.textAlignment = NSTextAlignmentCenter;
     label.font = [UIFont systemFontOfSize:140];
-    label.textColor = UIColor.whiteColor;
+    label.textColor = UIColor.blackColor;
 }
 
 - (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {

@@ -31,6 +31,7 @@
     _backLayer = backLayer;
     _frontLayer.doubleSided = NO;
     _backLayer.doubleSided = NO;
+    [self syncFlipRotation:0];
 }
 
 - (void)layoutSublayers {
