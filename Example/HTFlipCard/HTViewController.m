@@ -53,8 +53,10 @@
 
 - (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     _score++;
+    int newScore = _score;
     [self.flipCard flip:HTFlipDirectionVertical beforeFlip:^(UIView *frontView, UIView *backView) {
-        ((UILabel *)backView).text = SF(@"%d", _score);
+        ((UILabel *)backView).text = SF(@"%d", newScore);
+        NSLog(@"%d", newScore);
     } completed:^(UIView *frontView, UIView *backView) {
 
     }];
