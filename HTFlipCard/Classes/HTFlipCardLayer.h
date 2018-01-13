@@ -7,12 +7,12 @@
 
 #import <QuartzCore/QuartzCore.h>
 
-typedef enum : NSUInteger {
+typedef NS_OPTIONS(NSUInteger, HTFlipDirection) {
     HTFlipDirectionVertical = 1 << 0,
     HTFlipDirectionHorizontal = 1 << 1,
     HTFlipDirectionNegtive = 1 << 2,
     HTFlipDirectionPositive = 1 << 3
-} HTFlipDirection;
+};
 
 @interface HTFlipCardLayer : CALayer
 @property (assign, nonatomic) CGFloat flipRotation;

@@ -379,10 +379,12 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-HTFlipCard_Example/Pods-HTFlipCard_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/HTFlipCard/HTFlipCard.framework",
+				"${BUILT_PRODUCTS_DIR}/HTUIExtensions/HTUIExtensions.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HTFlipCard.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HTUIExtensions.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
