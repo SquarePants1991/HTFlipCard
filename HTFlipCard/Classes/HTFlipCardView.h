@@ -17,4 +17,5 @@
 - (void)setFrontView:(UIView *)frontView backView:(UIView *)backView;
 - (void)flip:(HTFlipDirection)direction;
 - (void)flip:(HTFlipDirection)direction beforeFlip:(HTFlipActionWillFlipHandler)willFlip completed:(HTFlipActionDidFlipCompleteHandler)completed;
+- (void)flip:(HTFlipDirection)direction duration:(CGFloat)duration beforeFlip:(HTFlipActionWillFlipHandler)willFlip completed:(HTFlipActionDidFlipCompleteHandler)completed;
 @end

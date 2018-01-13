@@ -8,6 +8,8 @@
 #import "HTFlipCardView.h"
 #import "HTFlipCardLayer.h"
 
+#define DefaultAnimationDuration 0.3
+
 @interface HTFlipCardView () <CAAnimationDelegate> {
 @private
     UIView *_frontView;
@@ -41,13 +43,18 @@
 }
 
 - (void)flip:(HTFlipDirection)direction {
-//    [self flip:direction completed:nil];
+    [self flip:direction beforeFlip:nil completed:nil];
 }
 
 - (void)flip:(HTFlipDirection)direction beforeFlip:(HTFlipActionWillFlipHandler)willFlip completed:(HTFlipActionDidFlipCompleteHandler)completed {
-    HTFlipAction *action = [HTFlipAction flipActionWithDirection:direction willFlipHandler:willFlip completeHandler:completed];
-    [self.flipActions addObject:action];
+    [self flip:direction duration:DefaultAnimationDuration beforeFlip:willFlip completed:completed];
+}
 
+- (void)flip:(HTFlipDirection)direction duration:(CGFloat)duration beforeFlip:(HTFlipActionWillFlipHandler)willFlip completed:(HTFlipActionDidFlipCompleteHandler)completed {
+    HTFlipAction *action = [HTFlipAction flipActionWithDirection:direction willFlipHandler:willFlip completeHandler:completed];
+    action.duration = duration;
+    [self.flipActions addObject:action];
+    
     dispatch_async(dispatch_get_main_queue(), ^{
         if (_currentFlipAction == nil) {
             [self peekAndDoAction];
@@ -87,7 +94,7 @@
     CABasicAnimation *flipAnimation = [CABasicAnimation animationWithKeyPath:@"flipRotation"];
     flipAnimation.fromValue = _isFlipped ? @(M_PI * directionFactor) : @0;
     flipAnimation.toValue = _isFlipped ? @(2 * M_PI * directionFactor) : @(M_PI * directionFactor);
-    flipAnimation.duration = 0.5;
+    flipAnimation.duration = action.duration;
     flipAnimation.fillMode = kCAFillModeForwards;
     flipAnimation.removedOnCompletion = NO;
     flipAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];

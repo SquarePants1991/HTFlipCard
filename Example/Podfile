@@ -2,6 +2,7 @@ use_frameworks!
 
 target 'HTFlipCard_Example' do
   pod 'HTFlipCard', :path => '../'
+  pod 'HTUIExtensions'
 
   target 'HTFlipCard_Tests' do
     inherit! :search_paths

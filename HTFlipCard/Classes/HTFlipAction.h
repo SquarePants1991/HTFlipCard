@@ -16,6 +16,7 @@ typedef void(^HTFlipActionDidFlipCompleteHandler)(UIView *frontView, UIView *bac
 @property (copy, nonatomic) HTFlipActionWillFlipHandler willFlipHandler;
 @property (copy, nonatomic) HTFlipActionDidFlipCompleteHandler didFlipCompleteHandler;
 @property (assign, nonatomic) HTFlipDirection flipDirection;
+@property (assign, nonatomic) NSTimeInterval duration;
 
 + (instancetype)flipActionWithDirection:(HTFlipDirection)flipDirection willFlipHandler:(HTFlipActionWillFlipHandler)willFlipHandler completeHandler:(HTFlipActionDidFlipCompleteHandler)completeHandler;
 @end
